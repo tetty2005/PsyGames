@@ -98,7 +98,7 @@ class PlanesGameView {
         let accuracy = Math.round(this.correctAnswers / this.totalActions * 100);
         let score = this.correctAnswers * this.totalActions * accuracy;
         let resultText = `Your accuracy is: ${accuracy}%.
-                            Your score is ${score}`;
+                            Your score is ${score}.`;
 
         this.showResults(resultText);
     }
