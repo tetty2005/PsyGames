@@ -4,9 +4,9 @@ class PlanesGameView {
         this.context = this.canvas.getContext('2d');
 
         this.isInGame = false;
-        this.gameDuration = 3000;
+        this.gameDuration = 10000;
         this.actionStartTime;
-        this.actionMaxDuration = 8000;
+        this.actionMaxDuration = 5000;
 
         this.correctAnswers = 0;
         this.totalActions = 0;
@@ -43,8 +43,6 @@ class PlanesGameView {
     startAction () {
         this.planesSettings = this.planesView.renderPlanesSettings();
         this.actionStartTime = new Date();
-
-        this.totalActions++;
     }
 
     gameEngineStep () {
@@ -56,6 +54,7 @@ class PlanesGameView {
 
     gameLoop () {
         if (this.actionStartTime.getTime() + this.actionMaxDuration < (new Date()).getTime()) {
+            this.totalActions++;
             this.startAction();
         }
 
@@ -89,13 +88,17 @@ class PlanesGameView {
             this.canvas.style.backgroundColor = this.red;
             setTimeout(()=> this.canvas.style.backgroundColor = this.backgroundCanvasColor, 100);
         }
-        
+
+        this.totalActions++;
         this.startAction();
     }
 
     stopGame () {
-        let resultText = 'Your score is: ' + this.correctAnswers + ' from ' + this.totalActions;
         this.isInGame = false;
+        let accuracy = Math.round(this.correctAnswers / this.totalActions * 100);
+        let score = this.correctAnswers * this.totalActions * accuracy;
+        let resultText = `Your accuracy is: ${accuracy}%.
+                            Your score is ${score}`;
 
         this.showResults(resultText);
     }
