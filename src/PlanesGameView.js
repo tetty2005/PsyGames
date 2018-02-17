@@ -12,10 +12,19 @@ class PlanesGameView {
         this.totalActions = 0;
         this.red = '#DB2A56';
         this.backgroundCanvasColor = '#013E57';
+
+        this.redPlaneImg = new Image();
+        this.redPlaneImg.src = 'img/red-plane.svg';
+
+        this.greenPlaneImg = new Image();
+        this.greenPlaneImg.src = 'img/green-plane.svg';
+
+        // document.body.appendChild(this.redPlaneImg);
+        // document.body.appendChild(this.greenPlaneImg);
     }
 
     render () {
-        this.planesView = new PlanesView(this.context);
+        this.planesView = new PlanesView(this.context, this.redPlaneImg, this.greenPlaneImg);
 
         this.planesView.render();
         this.initListeners();
@@ -43,6 +52,7 @@ class PlanesGameView {
     startAction () {
         this.planesSettings = this.planesView.renderPlanesSettings();
         this.actionStartTime = new Date();
+        console.log(this.planesSettings);
     }
 
     gameEngineStep () {
@@ -78,7 +88,7 @@ class PlanesGameView {
             return;
         }
 
-        let checkDirection = (this.planesSettings.planeColor === this.red)? 
+        let checkDirection = (this.planesSettings.planeImg === this.redPlaneImg)? 
                             this.planesSettings.planeDirection: 
                             this.planesSettings.moveDirection;
 

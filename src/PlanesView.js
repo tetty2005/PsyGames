@@ -1,23 +1,27 @@
 class PlanesView {
-    constructor (context) {
+    constructor (context, redPlaneImg, greenPlaneImg) {
         this.context = context;
+        this.redPlaneImg = redPlaneImg;
+        this.greenPlaneImg = greenPlaneImg;
+
         this.planes = [];
         this.x;
         this.y;
 
-        this.planeheight = 50;
-        this.planeBase = 20;
+        this.planeSectorSize = 70;
+        this.planeLength = 50;
+        this.planeWidth = 50;
         this.planesNumber = 5;
 
         this.red = '#DB2A56';
         this.green = '#00A179';
 
         this.directions = ['top', 'right', 'bottom', 'left'];
-        this.planeColors = [this.red, this.green];
+        this.planeImgs = [this.redPlaneImg, this.greenPlaneImg];
         this.planeCoords = [];
         this.moveDirection;
         this.planeDirection;
-        this.planeColor;
+        this.planeImg;
     }
 
     render () {
@@ -27,8 +31,9 @@ class PlanesView {
     initPlaneCoords () {
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
-                let xc = i*70, 
-                    yc = j*70;
+                let xc = i*this.planeSectorSize, 
+                    yc = j*this.planeSectorSize;
+
                 this.planeCoords.push([xc, yc]);
             }
         }
@@ -45,7 +50,7 @@ class PlanesView {
     }
 
     changePlaneCoords() {
-        switch (this.planeDirection) {
+        switch (this.moveDirection) {
         case 'right':
             this.x += 1;
             break;
@@ -64,49 +69,47 @@ class PlanesView {
     drawPlane (dx, dy) {
         let px = this.x + dx, 
             py = this.y + dy,
-            px1, py1, px2, py2;
-            
-        this.context.fillStyle = this.planeColor;
-        this.context.beginPath();
-        this.context.moveTo(px, py);
+            imgX, imgY, rotateAngle;
 
-        switch (this.moveDirection) {
+        switch (this.planeDirection) {
             case 'right':
-                px1 = px - this.planeheight,
-                py1 = py - this.planeBase,
-                px2 = px - this.planeheight,
-                py2 = py + this.planeBase;
+                rotateAngle = 0;
+                imgX = px + (this.planeSectorSize - this.planeLength) / 2;
+                imgY = py + (this.planeSectorSize - this.planeWidth) / 2;
+
                 break;
             case 'left':
-                px1 = px + this.planeheight,
-                py1 = py - this.planeBase,
-                px2 = px + this.planeheight,
-                py2 = py + this.planeBase;
+                rotateAngle = 180;
+                imgX = px + (this.planeSectorSize + this.planeLength) / 2;
+                imgY = py + (this.planeSectorSize + this.planeWidth) / 2;
+
                 break;
             case 'bottom':
-                px1 = px + this.planeBase,
-                py1 = py - this.planeheight,
-                px2 = px - this.planeBase,
-                py2 = py - this.planeheight;
+                rotateAngle = 90;
+                imgX = px + (this.planeSectorSize + this.planeLength) / 2;
+                imgY = py + (this.planeSectorSize - this.planeWidth) / 2;
+
                 break;
             case 'top':
-                px1 = px + this.planeBase,
-                py1 = py + this.planeheight,
-                px2 = px - this.planeBase,
-                py2 = py + this.planeheight;
+                rotateAngle = 270;
+                imgX = px + (this.planeSectorSize - this.planeLength) / 2;
+                imgY = py + (this.planeSectorSize + this.planeWidth) / 2;
+
                 break;
         }
 
-        this.context.lineTo(px1, py1);
-        this.context.lineTo(px2, py2);
-        this.context.fill();   
+        this.context.save();
+        this.context.translate(imgX, imgY);
+        this.context.rotate(rotateAngle * Math.PI / 180);
+        this.context.drawImage(this.planeImg, 0, 0, this.planeLength, this.planeWidth);
+        this.context.restore();
     }
 
     renderPlanesSettings () {
         this.x = 245;
         this.y = 145;
 
-        this.planeColor = this.planeColors[this.random(0, 1)];
+        this.planeImg = this.planeImgs[this.random(0, 1)];
         this.planeDirection = this.directions[this.random(0, 3)];
         this.moveDirection = this.directions[this.random(0, 3)];
         this.planes = [];
@@ -116,7 +119,7 @@ class PlanesView {
         }
 
         var planesSettings = {
-            planeColor: this.planeColor,
+            planeImg: this.planeImg,
             planeDirection: this.planeDirection,
             moveDirection: this.moveDirection
         }
