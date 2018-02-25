@@ -18,9 +18,6 @@ class PlanesGameView {
 
         this.greenPlaneImg = new Image();
         this.greenPlaneImg.src = 'img/green-plane.svg';
-
-        // document.body.appendChild(this.redPlaneImg);
-        // document.body.appendChild(this.greenPlaneImg);
     }
 
     render () {
@@ -28,7 +25,7 @@ class PlanesGameView {
 
         this.planesView.render();
         this.initListeners();
-        this.startGame();
+        this.showInstruction();
     }
 
     initListeners () {
@@ -37,6 +34,16 @@ class PlanesGameView {
                 this.onKeyDown(e);
             }
         });
+    }
+
+    showInstruction () {
+        var text = `If you see: <br>
+                    <strong>Green planes</strong> - choose button with its mooving direction. <br>
+                    <strong>Red planes</strong> - choose button with airplane's noses direction.`;
+
+        $('#instructionModal p').html(text);
+        $('#instructionModal .btn-restart-game').one('click', ()=> this.startGame());
+        $('#instructionModal').modal('show');
     }
 
     startGame () {

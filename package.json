@@ -1,0 +1,25 @@
+{
+  "name": "psygames",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "koa": "^2.5.0",
+    "koa-route": "^3.2.0",
+    "koa-static": "^4.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tetty2005/PsyGames.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tetty2005/PsyGames/issues"
+  },
+  "homepage": "https://github.com/tetty2005/PsyGames#readme"
+}
