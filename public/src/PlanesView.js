@@ -49,7 +49,7 @@ class PlanesView {
         this.changePlaneCoords();
     }
 
-    changePlaneCoords () {
+    changePlaneCoords() {
         switch (this.moveDirection) {
         case 'right':
             this.x += 1;
