@@ -1,5 +1,6 @@
 $(document).ready(() => {
-	const gamesView = new GamesView();
+
+	const gamesView = new GamesView('#games-view');
 
 	gamesView.render();
 });

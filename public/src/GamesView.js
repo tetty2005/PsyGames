@@ -1,27 +1,14 @@
-class GamesView {
-	constructor () {}
-
-	render () {
-		data.getGames().done(data => {
-			$('#main-content')[0].innerHTML = this.renderList(data);
-		});
+class GamesView extends BaseView {
+	constructor (el) {
+		super();
+		this.$el = $(el);
 	}
 
-	renderList (gameList) {
-		let list = `<ul class="game-list">`;
-
-		gameList.forEach((value) => {
-			list += `<li class="game">
-    					<img class="mr-3" src="..." alt="Generic placeholder image">
-    					<div class="game-content">
-      						<h5 class="mt-0 mb-1">${value.title}</h5>
-    					</div>
-    					<p>${value.description}</p>
-  					</li>`;
+	render () {
+		this.loadTemplate('/tpl/games.tpl', {variable: 'games'}).done(template => {
+			data.getGames().done(games => {
+				this.$el.html(template(games));
+			});
 		});
-
-		list += `</ul>`
-
-		return list;
 	}
 }
