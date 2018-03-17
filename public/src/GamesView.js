@@ -1,7 +1,9 @@
 class GamesView extends BaseView {
 	constructor (el) {
-		super();
-		this.$el = $(el);
+		super(el);
+		this.delegateEvents({
+			'click .btn-start-game': '_startGame'
+		});
 	}
 
 	render () {
@@ -10,5 +12,13 @@ class GamesView extends BaseView {
 				this.$el.html(template(games));
 			});
 		});
+	}
+
+    _startGame () {
+		const planesGameView = new PlanesGameView('#planes-game-view');
+
+		this.hide();
+        planesGameView.render();
+
 	}
 }

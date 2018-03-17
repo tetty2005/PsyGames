@@ -5,7 +5,7 @@
 			<div class="media-body">
 				<h5 class="mt-0"><%= game.title %></h5>
 				<p><%= game.description %></p>
-				<button type="button" class="btn btn-primary btn-sm">Play</button>
+				<button type="button" class="btn btn-primary btn-sm btn-start-game">Play</button>
 			</div>
 		</li> 
 	<% }); %>

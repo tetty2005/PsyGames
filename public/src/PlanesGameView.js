@@ -1,7 +1,6 @@
-class PlanesGameView {
-    constructor () {
-        this.canvas = document.getElementById('game-canvas');
-        this.context = this.canvas.getContext('2d');
+class PlanesGameView extends BaseView {
+    constructor (el) {
+        super(el);
 
         this.isInGame = false;
         this.gameDuration = 10000;
@@ -21,11 +20,15 @@ class PlanesGameView {
     }
 
     render () {
-        this.planesView = new PlanesView(this.context, this.redPlaneImg, this.greenPlaneImg);
-
-        this.planesView.render();
-        this.initListeners();
-        this.showInstruction();
+        this.loadTemplate('/tpl/planes.tpl').done(template => {
+            this.$el.html(template());
+            this.canvas = this.$el.find('canvas')[0];
+            this.context = this.canvas.getContext('2d');
+            this.planesView = new PlanesView(this.context, this.redPlaneImg, this.greenPlaneImg);
+            this.planesView.render();
+            this.initListeners();
+            this.showInstruction();
+        });
     }
 
     initListeners () {
