@@ -62,7 +62,6 @@ class PlanesGameView extends BaseView {
     startAction () {
         this.planesSettings = this.planesView.renderPlanesSettings();
         this.actionStartTime = new Date();
-        console.log(this.planesSettings);
     }
 
     gameEngineStep () {

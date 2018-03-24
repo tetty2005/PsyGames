@@ -14,11 +14,12 @@ class GamesView extends BaseView {
 		});
 	}
 
-    _startGame () {
+    _startGame (e) {
 		const planesGameView = new PlanesGameView('#planes-game-view');
+		const gameId = $(e.currentTarget).parents('li').data('id');
 
 		this.hide();
         planesGameView.render();
-
+        Router.navigate('game/' + gameId);
 	}
 }
