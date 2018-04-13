@@ -6,6 +6,7 @@ const app = new Koa();
 
 app.use(serve('public'));
 app.use(route.get('/game', routes.game));
+app.use(route.get('/play/:id', routes.play));
 
 app.use(async ctx => {
   ctx.body = 'Hello World';

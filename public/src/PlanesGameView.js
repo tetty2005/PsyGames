@@ -13,10 +13,10 @@ class PlanesGameView extends BaseView {
         this.backgroundCanvasColor = '#013E57';
 
         this.redPlaneImg = new Image();
-        this.redPlaneImg.src = 'img/red-plane.svg';
+        this.redPlaneImg.src = '/img/red-plane.svg';
 
         this.greenPlaneImg = new Image();
-        this.greenPlaneImg.src = 'img/green-plane.svg';
+        this.greenPlaneImg.src = '/img/green-plane.svg';
     }
 
     render () {

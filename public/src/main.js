@@ -1,11 +1,23 @@
 $(document).ready(() => {
+	Router.addRoute('/', (url) => {
+		const gamesView = new GamesView('#games-view');
 
-	Router.addRoute('game/([a-z0-9_-]+)', (url, id) => console.log('games added', url, id));
+		gamesView.render();
+	});
 
-	const gamesView = new GamesView('#games-view');
+	Router.addRoute('/play/([a-z0-9_-]+)', (url, id) => {
+		const planesGameView = new PlanesGameView('#planes-game-view');
+		
+        planesGameView.render();
+	});
 
-	gamesView.render();
-	$(window).on('hashchange', ()=> {
-		console.log('hashchange');
+	Router.navigate(location.pathname);
+
+	$(document).on('click', 'a', e => {
+		const isRouteExist = Router.navigate($(e.currentTarget).attr('href'));
+
+		if (isRouteExist) {
+			e.preventDefault();
+		}
 	});
 });
