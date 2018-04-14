@@ -19,15 +19,19 @@ class Router {
 
 	execute (url, route) {
 		const params = url.match(new RegExp(route.url, 'i'));
-		route.handler(...params);
+
+		return route.handler(...params);
 	}
 
 	static navigate (url) {
 		const route = this.getInstance().findRoute(url);
 
 		if (route) {
-			window.history.pushState({}, '', url);
-			this.getInstance().execute(url, route);
+            const shouldNavigate = this.getInstance().execute(url, route);
+
+            if (shouldNavigate !== false) {
+                window.history.pushState({}, '', url);
+			}
 
 			return true;
 		}

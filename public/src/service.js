@@ -1,6 +1,6 @@
 const data = {
 	getGames: () => {
-		return $.get('/game');
+		return $.get('/data/game');
 	}
 };
 

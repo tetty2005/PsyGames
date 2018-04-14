@@ -1,16 +1,5 @@
 $(document).ready(() => {
-	Router.addRoute('/', (url) => {
-		const gamesView = new GamesView('#games-view');
-
-		gamesView.render();
-	});
-
-	Router.addRoute('/play/([a-z0-9_-]+)', (url, id) => {
-		const planesGameView = new PlanesGameView('#planes-game-view');
-		
-        planesGameView.render();
-	});
-
+    registrateRoutes();
 	Router.navigate(location.pathname);
 
 	$(document).on('click', 'a', e => {
@@ -21,3 +10,25 @@ $(document).ready(() => {
 		}
 	});
 });
+
+function registrateRoutes () {
+    Router.addRoute('/', (url) => {
+        const gamesView = new GamesView('#page-content');
+
+		gamesView.render();
+	});
+
+    Router.addRoute('/login', () => {
+    	const loginView = new LoginView();
+
+    	loginView.render();
+
+    	return false;
+	});
+
+	Router.addRoute('/play/([a-z0-9_-]+)', (url, id) => {
+		const planesGameView = new PlanesGameView('#page-content');
+
+		planesGameView.render();
+	});
+}
