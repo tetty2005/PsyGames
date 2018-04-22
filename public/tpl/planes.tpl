@@ -18,7 +18,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-secondary btn-restart-game" data-dismiss="modal">Start new game</button>
+        <button type="button" class="btn btn-success btn-restart-game" data-dismiss="modal">Start new game</button>
       </div>
     </div>
   </div>
@@ -40,7 +40,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-        <button type="button" class="btn btn-secondary btn-restart-game" data-dismiss="modal">Try again</button>
+        <button type="button" class="btn btn-restart-game btn-success" data-dismiss="modal">Try again</button>
       </div>
     </div>
   </div>

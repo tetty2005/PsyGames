@@ -15,5 +15,13 @@
   width: 64px; }
 .game-list button {
   margin-bottom: 40px; }
+.game-list .media {
+  margin: 40px 0px; }
+
+#instructionModal .modal-dialog, #resultModal .modal-dialog {
+  max-width: 620px;
+  margin: 140px 10px 10px 60px; }
+#instructionModal .modal-body, #resultModal .modal-body {
+  height: 200px; }
 
 /*# sourceMappingURL=style.css.map */

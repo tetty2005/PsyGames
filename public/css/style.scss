@@ -21,4 +21,20 @@
   button {
     margin-bottom: 40px;
   }
+
+  .media {
+    margin: 40px 0px;
+  }
+}
+
+
+#instructionModal, #resultModal {
+  .modal-dialog {
+    max-width: 620px;
+    margin: 140px 10px 10px 60px;
+  }
+
+  .modal-body {
+    height: 200px;
+  }
 }

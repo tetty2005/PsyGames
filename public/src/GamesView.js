@@ -1,9 +1,6 @@
 class GamesView extends BaseView {
 	constructor (el) {
 		super(el);
-		this.delegateEvents({
-			'click .btn-start-game': '_startGame'
-		});
 	}
 
 	render () {
@@ -12,9 +9,5 @@ class GamesView extends BaseView {
 				this.$el.html(template(games));
 			});
 		});
-	}
-
-    _startGame () {
-		this.hide();
 	}
 }

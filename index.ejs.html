@@ -36,10 +36,20 @@
                     <a class="nav-link" href="/results">Results</a>
                 </li>
             </ul>
+            <% if (user) { %>
+            <span class="navbar-text mr-3">
+                Hello, <%= user.first_name %> <%= user.last_name %>!
+            </span>
+            <nav class="navbar-nav d-lg-none">
+                <a class="nav-link" href="/logout">Log out</a>
+            </nav>
+            <a class="btn btn-outline-secondary d-none d-lg-inline-block" href="/logout">Log out</a>
+            <% } else { %>
             <nav class="navbar-nav d-lg-none">
                 <a class="nav-link" href="/login">Log in</a>
             </nav>
             <a class="btn btn-outline-secondary d-none d-lg-inline-block" href="/login">Log in</a>
+            <% } %>
         </div>
     </nav>
     <div id="page-content">

@@ -115,7 +115,7 @@ class PlanesGameView extends BaseView {
     stopGame () {
         this.isInGame = false;
         let accuracy = Math.round(this.correctAnswers / this.totalActions * 100);
-        let score = this.correctAnswers * this.totalActions * accuracy;
+        let score = this.correctAnswers * accuracy;
         let resultText = `Your accuracy is: <strong>${accuracy}%</strong>. <br>
                             Your score is <strong>${score}</strong>.`;
 

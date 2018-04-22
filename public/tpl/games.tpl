@@ -5,7 +5,7 @@
 			<div class="media-body">
 				<h5 class="mt-0"><%= game.title %></h5>
 				<p><%= game.description %></p>
-				<a href="/play/<%= game.id %>" class="btn btn-primary btn-sm btn-start-game">Play</a>
+				<a href="/play/<%= game.id %>" class="btn btn-primary btn-sm">Play</a>
 			</div>
 		</li> 
 	<% }); %>
